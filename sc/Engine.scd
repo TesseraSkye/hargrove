@@ -18,13 +18,13 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 ~activeSynth = \wavetable;
 // Samples!
 //This is for the sampler and granular..
-~sampPath = "Q:/4_Code/Projects/HargroveOld/codebase-new/hargrove-sc/codebase/rev1/samples/woah.wav";
+~sampPath = "YOUR/SAMPLE/HERE.wav";
 
 //..and this is for the wavetable synth. All of them should be filled and run through serum first.
 ~wtPath = ["","",""];
-~wtPath.put(0,"Q:/4_Code/Projects/HargroveOld/codebase-new/hargrove-sc/codebase/rev1/samples/wt_shapes.wav");
-~wtPath.put(1,"Q:/4_Code/Projects/HargroveOld/codebase-new/hargrove-sc/codebase/rev1/samples/wt_eguitar.wav");
-~wtPath.put(2,"Q:/4_Code/Projects/HargroveOld/codebase-new/hargrove-sc/codebase/rev1/samples/wt_monster.wav");
+~wtPath.put(0,"YOUR/WAVETABLE/HERE.wav");
+~wtPath.put(1,"YOUR/WAVETABLE/HERE.wav");
+~wtPath.put(2,"YOUR/WAVETABLE/HERE.wav");
 
 //for dev stuff
 ~fullIO = false;
