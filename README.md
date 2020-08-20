@@ -4,7 +4,6 @@ Built with Supercollider and Electron.
 GPL3 licence.
 
 ~~ IN DEVELOPMENT ~~
-This means that some things (js front end, etc) don't exist yet
 
 Use: Install Supercollider and the SC3 plugins, run Engine.scd in the sc folder. 
 Further instructions therein.

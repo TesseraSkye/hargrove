@@ -9,10 +9,7 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-button>Regen Wavetables</b-button>
-      </b-col>
-      <b-col>
-        <b-button>Regen Wavetables</b-button>
+        <b-button block @click="generateTables()">Regen Wavetables</b-button>
       </b-col>
     </b-row>
   </b-container>
@@ -25,6 +22,11 @@
     data() {
       return {
         //
+      }
+    },
+    methods: {
+      generateTables() {
+        this.$store.dispatch("generateTables")
       }
     },
     components: {

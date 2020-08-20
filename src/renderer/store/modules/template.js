@@ -4,7 +4,7 @@ const state = {
 
 const mutations = {
   updateData (state,data) {
-    state.data(data)
+    state.data = data
   }
 }
 
