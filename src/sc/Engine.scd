@@ -15,16 +15,18 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 
 // USER PARAMS (RUN FIRST)
 
-~activeSynth = \wavetable;
+~activeSynth = 'sampler';
 // Samples!
 //This is for the sampler and granular..
-~sampPath = "Q:/4_Code/Projects/hargrove/assets/samples/dev/vocoder.wav";
+~sampPath = "Q:/4_Code/Projects/hargrove/src/samples/vocoder.wav";
 
 //..and this is for the wavetable synth. All of them should be filled and run through serum first.
 ~wtPath = ["","",""];
-~wtPath.put(0,"Q:/4_Code/Projects/hargrove/assets/samples/dev/wt_shapes.wav");
-~wtPath.put(1,"Q:/4_Code/Projects/hargrove/assets/samples/dev/wt_eguitar.wav");
-~wtPath.put(2,"Q:/4_Code/Projects/hargrove/assets/samples/dev/wt_yoy.wav");
+~wtPath.put(0,"Q:/4_Code/Projects/hargrove/src/samples/wt_shapes.wav");
+~wtPath.put(1,"Q:/4_Code/Projects/hargrove/src/samples/wt_shapes.wav");
+~wtPath.put(2,"Q:/4_Code/Projects/hargrove/src/samples/wt_shapes.wav");
+// ~wtPath.put(1,"Q:/4_Code/Projects/hargrove/src/samples/wt_eguitar.wav");
+// ~wtPath.put(2,"Q:/4_Code/Projects/hargrove/src/samples/wt_yoy.wav");
 
 //for dev stuff
 ~fullIO = false;
@@ -64,8 +66,8 @@ s.waitForBoot({
 		// b.postln;
 
 		(
-			// Atonal Sampler. Rate control is through zero
-			SynthDef.new(\sampler, {
+			// BufRd Sampler. Rate control is through zero
+			SynthDef.new('sampler', {
 
 				/* Start and length are in percentage of total. Length longer than 1 will just wrap
 				When trig crosses 0, it will restart the sample
@@ -86,6 +88,7 @@ s.waitForBoot({
 				duration = duration.clip(0.001,1);
 				//convert positional args to samples
 				frames = BufFrames.kr(sampBuffer);
+				//prevents dropouts by forcing the synth quiet
 				deltaTrig = Changed.ar(LeakDC.ar(start.asAudioRateInput),0);
 				deltaTrig = Trig1.ar(deltaTrig,0.25);
 				deltaTrig = deltaTrig * (0-1) + 1;
@@ -110,7 +113,7 @@ s.waitForBoot({
 				freeTrig = loopPos > (loopLength - 100 + (1000 * (loop)));
 				FreeSelf.kr(freeTrig);
 			// });
-			}).writeDefFile("Q:/4_Code/Projects/hargrove/sc/synthdefs");
+			}).writeDefFile("Q:/4_Code/Projects/hargrove/src/sc/defs");
 		);
 
 		/*	1.wait;
@@ -120,7 +123,7 @@ s.waitForBoot({
 
 		(
 			//Granular Engine
-			SynthDef.new(\granular, {
+			SynthDef.new('granular', {
 
 				// grain rate is grains / second (kinda), density is ratio of grain rate : grain length
 				arg sampBuffer, paramX=0, paramY=1, paramZ=0, cpsPitch=440, env= -1, ktr=1, voiceNum=0;
@@ -146,7 +149,7 @@ s.waitForBoot({
 					out = PanAz.ar(8, out, voiceNum/4, 1, 1, 0);
 					Out.ar(0, out);
 				}, {Out.ar(0, [out,out]);});
-			}).writeDefFile("Q:/4_Code/Projects/hargrove/sc/synthdefs");
+			}).writeDefFile("Q:/4_Code/Projects/hargrove/src/sc/defs");
 
 		);
 
@@ -157,7 +160,7 @@ s.waitForBoot({
 
 		(
 			//modal synthesis
-			SynthDef.new(\resonator, {
+			SynthDef.new('resonator', {
 				arg input, cpsPitch=440, paramX=0, paramY=1, paramZ=0, voiceNum=0,
 				freqs (#[261.63, 523.26, 1048, 2096]),
 				amps (#[0.8, 0.6, 0.4, 0.05]),
@@ -176,7 +179,7 @@ s.waitForBoot({
 					out = PanAz.ar(8, sig, voiceNum/4, 1, 1, 0);
 					Out.ar(0, out);
 				}, {Out.ar(0, [out,out]);});
-			}).writeDefFile("Q:/4_Code/Projects/hargrove/sc/synthdefs");
+			}).writeDefFile("Q:/4_Code/Projects/hargrove/src/sc/defs");
 		);
 
 		// ~synth = Synth(\resonator);
@@ -184,7 +187,7 @@ s.waitForBoot({
 
 		(
 			//hammer tube thing. idk, it's cool lol
-			SynthDef.new(\tube, {
+			SynthDef.new('tube', {
 				arg cpsPitch = 440, paramX=0, paramY=0, paramZ=0, voiceNum=0;
 				var sig, saw, modSaw, out;
 				modSaw = Saw.ar(cpsPitch/(2**2));
@@ -203,7 +206,7 @@ s.waitForBoot({
 					out = PanAz.ar(8, out, voiceNum/4, 1, 1, 0);
 					Out.ar(0, out);
 				}, {Out.ar(0, [out,out]);});
-			}).writeDefFile("Q:/4_Code/Projects/hargrove/sc/synthdefs");
+			}).writeDefFile("Q:/4_Code/Projects/hargrove/src/sc/defs");
 		);
 
 		// ~synth = Synth(\tube);
@@ -323,8 +326,8 @@ s.waitForBoot({
 		((~tableFrames.maxItem) / 5).wait;
 
 		(
-			SynthDef.new(\wavetable, {
-				arg rate=0, cpsPitch=110, frameSize = 2048, paramX=0, paramY=0, paramZ=0, frameCount = ~tableFrames, voiceNum = 0;
+			SynthDef.new('wavetable', {
+				arg rate=0, cpsPitch=110, frameSize = 2048, paramX=0, paramY=0, paramZ=0, frameCount = [1,1,1], voiceNum = 0;
 				var sig1, sig2, sig3, array, levels, out;
 				// frameCount = frameCount - 1;
 				// Uses HSV to RGB to make an even power mixer
@@ -334,9 +337,9 @@ s.waitForBoot({
 
 
 				// 3 sets of wavetables
-				sig1 = VOsc.ar((paramZ * (~tableFrames[0]-1)).clip(0.001,(~tableFrames[0]-1)-0.001),cpsPitch,0,levels[0][0][0]);
-				sig2 = VOsc.ar(256+(paramZ * (~tableFrames[1]-1)).clip(0.001,(~tableFrames[1]-1)-0.001),cpsPitch,0,levels[1][0][0]);
-				sig3 = VOsc.ar(512+(paramZ * (~tableFrames[2]-1)).clip(0.001,(~tableFrames[2]-1)-0.001),cpsPitch,0,levels[2][0][0]);
+				sig1 = VOsc.ar((paramZ * (frameCount[0]-1)).clip(0.001,(frameCount[0]-1)-0.001),cpsPitch,0,levels[0][0][0]);
+				sig2 = VOsc.ar(256+(paramZ * (frameCount[1]-1)).clip(0.001,(frameCount[1]-1)-0.001),cpsPitch,0,levels[1][0][0]);
+				sig3 = VOsc.ar(512+(paramZ * (frameCount[2]-1)).clip(0.001,(frameCount[2]-1)-0.001),cpsPitch,0,levels[2][0][0]);
 				//combine them
 				array = [sig1 , sig2, sig3];
 				//remove any DC offset
@@ -349,7 +352,7 @@ s.waitForBoot({
 					out = PanAz.ar(8, out, voiceNum/4, 1, 1, 0);
 					Out.ar(0, out);
 				}, {Out.ar(0, [out,out]);});
-			}).add;
+			}).writeDefFile("Q:/4_Code/Projects/hargrove/src/sc/defs");
 		);
 		1.wait;
 		// ~synth = Synth(\wavetable);

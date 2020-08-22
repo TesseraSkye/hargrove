@@ -3,7 +3,7 @@
       <b-navbar type="dark" variant="dark" class="shadow drag-area">
         <router-link to="/" class="text-light no-drag">
           <b-navbar-brand class="no-drag">
-            <b-img class="wordmark" :src="require('./assets/static/hargrove_wordmark_light.png')"></b-img>
+            <b-img class="wordmark" :src="require('./assets/hargrove_wordmark_light.png')"></b-img>
           </b-navbar-brand>
         </router-link>
 
