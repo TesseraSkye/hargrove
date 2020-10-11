@@ -250,9 +250,12 @@ int main(void) {
 		/*
 		compare two readings. To reduce noise and bandwidth, they're measured against a threshold,
 		and set to only emit i2c if larger than a specific amount.
-		In principle, this reduces bitdepth quite a bit, and would cause sliding, but in practice it seems like there's enough noise that it doesn't matter.
+		In principle, this reduces bitdepth quite a bit, and would cause drift, but in practice it seems like there's enough noise that it doesn't matter.
+		To make it better, implement a delay and timeout feature that checks for new readings infrequently, and only starts high-rate readings if there's new data.
 		*/
 		if (tol > HG_CTRL_TOLERANCE) {
+			if(res > 4095) {res = 4095;}; // clip if high..
+			if (res <0) {res = 0;}; // or low.
 			hg_i2c_write(HG_I2C_SLAVE_ADDR, &res, 2); // target address, data, length in bytes of payload
 		}
 		
