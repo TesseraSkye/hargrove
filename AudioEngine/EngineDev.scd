@@ -15,16 +15,16 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 
 // USER PARAMS (RUN FIRST)
 
-~activeSynth = \wavetable;
+~activeSynth = \samp2;
 // Samples!
 //This is for the sampler and granular..
-~sampPath = "Q:/4_Code/Projects/HargroveOld/codebase-new/hargrove-sc/codebase/rev1/samples/woah.wav";
+~sampPath = "Q:/1 SkyeData/1 Projects/Timeless/hgExtra/samples/woah.wav";
 
 //..and this is for the wavetable synth. All of them should be filled and run through serum first.
 ~wtPath = ["","",""];
-~wtPath.put(0,"Q:/4_Code/Projects/HargroveOld/codebase-new/hargrove-sc/codebase/rev1/samples/wt_shapes.wav");
-~wtPath.put(1,"Q:/4_Code/Projects/HargroveOld/codebase-new/hargrove-sc/codebase/rev1/samples/wt_eguitar.wav");
-~wtPath.put(2,"Q:/4_Code/Projects/HargroveOld/codebase-new/hargrove-sc/codebase/rev1/samples/wt_monster.wav");
+~wtPath.put(0,"Q:/1 SkyeData/1 Projects/Timeless/hgExtra/samples/wt_shapes.wav");
+~wtPath.put(1,"Q:/1 SkyeData/1 Projects/Timeless/hgExtra/samples/wt_eguitar.wav");
+~wtPath.put(2,"Q:/1 SkyeData/1 Projects/Timeless/hgExtra/samples/wt_monster.wav");
 
 //for dev stuff
 ~fullIO = false;
@@ -34,7 +34,7 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 
 
 //boot the synth (RUN LAST)
-~boot.value;
+	~boot.value;
 
 
 
@@ -114,6 +114,39 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 
 			/*	1.wait;
 			~synth = Synth(\sampler, ["loop",1,'sampBuffer',b]);*/
+
+
+			(
+				SynthDef.new(\samp2, {
+					arg sampBuffer, paramX = 0.75, paramY = 0, paramZ = 1, cpsPitch=263.5;
+					var ratioPitch, rate, start, duration, frames, loopStart, loopEnd, loopLength, sig, deltaTrig;
+
+					rate = (paramX-0.5)*4;
+					start = paramY;
+					duration = paramZ**3;
+					ratioPitch = rate * (2**((cpsPitch.cpsmidi / 12) - 5));
+
+					duration = duration.clip(0.001,1);
+
+					frames = BufFrames.kr(sampBuffer);
+
+					deltaTrig = Changed.ar(LeakDC.ar(start.asAudioRateInput),0);
+					deltaTrig = Trig1.ar(deltaTrig,0.25);
+					deltaTrig = deltaTrig * (0-1) + 1;
+
+					loopStart = start * frames;
+					loopStart = loopStart.clip(0,frames-1);
+					loopLength = duration * frames;
+					loopLength = loopLength.clip(128, loopLength+20);
+					loopEnd = loopStart + loopLength;
+					loopEnd = loopEnd.clip(loopStart + 128, frames);
+
+					sig = LoopBuf.ar(1, sampBuffer, ratioPitch, deltaTrig, loopStart, loopStart, loopEnd);
+
+					Out.ar(0, (sig!2));
+
+				}).add;
+			);
 
 
 
