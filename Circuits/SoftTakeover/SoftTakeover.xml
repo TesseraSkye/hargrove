@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>Q:\1 SkyeData\1 Projects\Timeless\hargrove\Circuits\SoftTakeover\SoftTakeover.sch</source>
+    <date>11/21/2020 10:00:25 AM</date>
+    <tool>Eeschema (5.1.6)-1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>SoftTakeover.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>ATSAMD11D14A-M</value>
+      <footprint>Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm</footprint>
+      <datasheet>http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42363-SAM-D11_Datasheet.pdf</datasheet>
+      <libsource lib="MCU_Microchip_SAMD" part="ATSAMD11D14A-M" description="ARM Cortex-M0+ MCU, 48MHz, 16KB Flash, 4KB RAM, 1.6-3.6V, 22 GPIO, QFN-24"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FAD2176</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>0.1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FAD684C</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>MCP4728</value>
+      <footprint>Package_SO:MSOP-10_3x3mm_P0.5mm</footprint>
+      <datasheet>http://ww1.microchip.com/downloads/en/DeviceDoc/22187E.pdf</datasheet>
+      <libsource lib="Analog_DAC" part="MCP4728" description="12-bit digital to analog converter, quad output, 2.048V internal reference, integrated EEPROM, I2C interface"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FB47E6B</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>0.1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FB47E7D</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>5k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FB47E8D</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>ADG734</value>
+      <footprint>Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm</footprint>
+      <datasheet>https://www.analog.com/media/en/technical-documentation/data-sheets/ADG733_734.pdf</datasheet>
+      <libsource lib="Analog_Switch" part="ADG734" description="Quad SPDT CMOS Analog Switch, 2.5Ohm Ron, TSSOP-20"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FB1BAFD</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>0.1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FC12197</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>Conn_01x08_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="Conn_01x08_Male" description="Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FCD95F9</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>Conn_01x08_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="Conn_01x08_Male" description="Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FCDB26E</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>Conn_ARM_JTAG_SWD_10</value>
+      <footprint>Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical</footprint>
+      <datasheet>http://infocenter.arm.com/help/topic/com.arm.doc.ddi0314h/DDI0314H_coresight_components_trm.pdf</datasheet>
+      <libsource lib="Connector" part="Conn_ARM_JTAG_SWD_10" description="Cortex Debug Connector, standard ARM Cortex-M SWD and JTAG interface"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FE64CB5</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>0.1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FB7F2F7</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FB831FA</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>0.1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FBB0CC4</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>5k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FB47E94</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Analog_DAC" part="MCP4728">
+      <description>12-bit digital to analog converter, quad output, 2.048V internal reference, integrated EEPROM, I2C interface</description>
+      <docs>http://ww1.microchip.com/downloads/en/DeviceDoc/22187E.pdf</docs>
+      <footprints>
+        <fp>*SOP*3x3mm*P0.5mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MCP4728</field>
+        <field name="Footprint">Package_SO:MSOP-10_3x3mm_P0.5mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VDD" type="power_in"/>
+        <pin num="2" name="SCL" type="input"/>
+        <pin num="3" name="SDA" type="BiDi"/>
+        <pin num="4" name="~LDAC" type="input"/>
+        <pin num="5" name="RDY/~BSY" type="output"/>
+        <pin num="6" name="VOUTA" type="output"/>
+        <pin num="7" name="VOUTB" type="output"/>
+        <pin num="8" name="VOUTC" type="output"/>
+        <pin num="9" name="VOUTD" type="output"/>
+        <pin num="10" name="VSS" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Analog_Switch" part="ADG734">
+      <description>Quad SPDT CMOS Analog Switch, 2.5Ohm Ron, TSSOP-20</description>
+      <docs>https://www.analog.com/media/en/technical-documentation/data-sheets/ADG733_734.pdf</docs>
+      <footprints>
+        <fp>TSSOP*4.4x6.5mm*P0.65mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ADG734</field>
+        <field name="Footprint">Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="input"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="~" type="passive"/>
+        <pin num="5" name="VSS" type="power_in"/>
+        <pin num="6" name="GND" type="power_in"/>
+        <pin num="7" name="~" type="passive"/>
+        <pin num="8" name="~" type="passive"/>
+        <pin num="9" name="~" type="passive"/>
+        <pin num="10" name="~" type="input"/>
+        <pin num="11" name="~" type="input"/>
+        <pin num="12" name="~" type="passive"/>
+        <pin num="13" name="~" type="passive"/>
+        <pin num="14" name="~" type="passive"/>
+        <pin num="15" name="NC" type="NotConnected"/>
+        <pin num="16" name="VDD" type="power_in"/>
+        <pin num="17" name="~" type="passive"/>
+        <pin num="18" name="~" type="passive"/>
+        <pin num="19" name="~" type="passive"/>
+        <pin num="20" name="~" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_01x08_Male">
+      <description>Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x08_Male</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_ARM_JTAG_SWD_10">
+      <description>Cortex Debug Connector, standard ARM Cortex-M SWD and JTAG interface</description>
+      <docs>http://infocenter.arm.com/help/topic/com.arm.doc.ddi0314h/DDI0314H_coresight_components_trm.pdf</docs>
+      <footprints>
+        <fp>PinHeader?2x05?P1.27mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_ARM_JTAG_SWD_10</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VTref" type="power_in"/>
+        <pin num="2" name="SWDIO/TMS" type="BiDi"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="SWDCLK/TCK" type="output"/>
+        <pin num="5" name="GND" type="passive"/>
+        <pin num="6" name="SWO/TDO" type="input"/>
+        <pin num="7" name="KEY" type="NotConnected"/>
+        <pin num="8" name="NC/TDI" type="output"/>
+        <pin num="9" name="GNDDetect" type="passive"/>
+        <pin num="10" name="~RESET~" type="openCol"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="MCU_Microchip_SAMD" part="ATSAMD09D14A-M">
+      <aliases>
+        <alias>ATSAMD10D13A-M</alias>
+        <alias>ATSAMD10D14A-M</alias>
+        <alias>ATSAMD11D14A-M</alias>
+      </aliases>
+      <description>ARM Cortex-M0+ MCU, 48MHz, 16KB Flash, 4KB RAM, 2.4-3.6V, 22 GPIO, QFN-24</description>
+      <docs>http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42414-SAM-D09_Datasheet.pdf</docs>
+      <footprints>
+        <fp>QFN*1EP*4x4mm*P0.5mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ATSAMD09D14A-M</field>
+        <field name="Footprint">Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="PA02" type="BiDi"/>
+        <pin num="2" name="PA03" type="BiDi"/>
+        <pin num="3" name="PA04" type="BiDi"/>
+        <pin num="4" name="PA05" type="BiDi"/>
+        <pin num="5" name="PA06" type="BiDi"/>
+        <pin num="6" name="PA07" type="BiDi"/>
+        <pin num="7" name="PA08/XIN" type="BiDi"/>
+        <pin num="8" name="PA09/XOUT" type="BiDi"/>
+        <pin num="9" name="PA10" type="BiDi"/>
+        <pin num="10" name="PA11" type="BiDi"/>
+        <pin num="11" name="PA14" type="BiDi"/>
+        <pin num="12" name="PA15" type="BiDi"/>
+        <pin num="13" name="PA16" type="BiDi"/>
+        <pin num="14" name="PA17" type="BiDi"/>
+        <pin num="15" name="PA22" type="BiDi"/>
+        <pin num="16" name="PA23" type="BiDi"/>
+        <pin num="17" name="PA27" type="BiDi"/>
+        <pin num="18" name="PA28/~RST" type="BiDi"/>
+        <pin num="19" name="PA30/SWCLK" type="BiDi"/>
+        <pin num="20" name="PA31/SWDIO" type="BiDi"/>
+        <pin num="21" name="PA24" type="BiDi"/>
+        <pin num="22" name="PA25" type="BiDi"/>
+        <pin num="23" name="GND" type="power_in"/>
+        <pin num="24" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Analog_DAC">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Analog_DAC.lib</uri>
+    </library>
+    <library logical="Analog_Switch">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Analog_Switch.lib</uri>
+    </library>
+    <library logical="Connector">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Connector.lib</uri>
+    </library>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Device.lib</uri>
+    </library>
+    <library logical="MCU_Microchip_SAMD">
+      <uri>C:\Program Files\KiCad\share\kicad\library/MCU_Microchip_SAMD.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="IN_3">
+      <node ref="U3" pin="17"/>
+      <node ref="J1" pin="6"/>
+      <node ref="U1" pin="4"/>
+    </net>
+    <net code="2" name="SDA_EXT">
+      <node ref="U1" pin="11"/>
+      <node ref="J1" pin="7"/>
+    </net>
+    <net code="3" name="SCL_EXT">
+      <node ref="U1" pin="12"/>
+      <node ref="J1" pin="8"/>
+    </net>
+    <net code="4" name="Net-(J2-Pad8)">
+      <node ref="J2" pin="8"/>
+    </net>
+    <net code="5" name="IN_1">
+      <node ref="U1" pin="2"/>
+      <node ref="U3" pin="7"/>
+      <node ref="J1" pin="4"/>
+    </net>
+    <net code="6" name="OUT_1">
+      <node ref="J2" pin="4"/>
+      <node ref="U3" pin="8"/>
+    </net>
+    <net code="7" name="DAC_1">
+      <node ref="U2" pin="7"/>
+      <node ref="U3" pin="9"/>
+    </net>
+    <net code="8" name="DAC_0">
+      <node ref="U3" pin="2"/>
+      <node ref="U2" pin="6"/>
+    </net>
+    <net code="9" name="DAC_2">
+      <node ref="U2" pin="8"/>
+      <node ref="U3" pin="12"/>
+    </net>
+    <net code="10" name="DAC_3">
+      <node ref="U2" pin="9"/>
+      <node ref="U3" pin="19"/>
+    </net>
+    <net code="11" name="Net-(J3-Pad7)">
+      <node ref="J3" pin="7"/>
+    </net>
+    <net code="12" name="Net-(J3-Pad8)">
+      <node ref="J3" pin="8"/>
+    </net>
+    <net code="13" name="3v3">
+      <node ref="C2" pin="2"/>
+      <node ref="R3" pin="1"/>
+      <node ref="C6" pin="1"/>
+      <node ref="U1" pin="24"/>
+      <node ref="U2" pin="1"/>
+      <node ref="J3" pin="1"/>
+      <node ref="C1" pin="2"/>
+      <node ref="U3" pin="16"/>
+      <node ref="J1" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="C3" pin="2"/>
+      <node ref="C5" pin="1"/>
+      <node ref="J2" pin="2"/>
+      <node ref="R2" pin="1"/>
+    </net>
+    <net code="14" name="Net-(J3-Pad6)">
+      <node ref="J3" pin="6"/>
+    </net>
+    <net code="15" name="GND">
+      <node ref="C3" pin="1"/>
+      <node ref="J3" pin="5"/>
+      <node ref="U3" pin="6"/>
+      <node ref="U2" pin="10"/>
+      <node ref="U2" pin="4"/>
+      <node ref="U3" pin="5"/>
+      <node ref="C4" pin="1"/>
+      <node ref="U1" pin="23"/>
+      <node ref="C2" pin="1"/>
+      <node ref="C5" pin="2"/>
+      <node ref="J3" pin="3"/>
+      <node ref="J3" pin="9"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C1" pin="1"/>
+      <node ref="J2" pin="1"/>
+      <node ref="J1" pin="1"/>
+    </net>
+    <net code="16" name="Net-(U1-Pad7)">
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="17" name="LAYER_SEL">
+      <node ref="U1" pin="13"/>
+      <node ref="J2" pin="7"/>
+    </net>
+    <net code="18" name="Net-(U2-Pad5)">
+      <node ref="U2" pin="5"/>
+    </net>
+    <net code="19" name="Net-(U1-Pad5)">
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="20" name="Net-(U1-Pad6)">
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="21" name="SW_1">
+      <node ref="U3" pin="10"/>
+      <node ref="U1" pin="22"/>
+    </net>
+    <net code="22" name="Net-(U1-Pad8)">
+      <node ref="U1" pin="8"/>
+    </net>
+    <net code="23" name="RST">
+      <node ref="U1" pin="18"/>
+      <node ref="J3" pin="10"/>
+    </net>
+    <net code="24" name="SWDIO">
+      <node ref="J3" pin="2"/>
+      <node ref="U1" pin="20"/>
+    </net>
+    <net code="25" name="SWCLK">
+      <node ref="J3" pin="4"/>
+      <node ref="U1" pin="19"/>
+    </net>
+    <net code="26" name="SDA_DAC">
+      <node ref="U2" pin="3"/>
+      <node ref="R3" pin="2"/>
+      <node ref="U1" pin="15"/>
+    </net>
+    <net code="27" name="SCL_DAC">
+      <node ref="U2" pin="2"/>
+      <node ref="U1" pin="16"/>
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="28" name="Net-(U1-Pad14)">
+      <node ref="U1" pin="14"/>
+    </net>
+    <net code="29" name="Net-(U1-Pad17)">
+      <node ref="U1" pin="17"/>
+    </net>
+    <net code="30" name="Net-(U3-Pad15)">
+      <node ref="U3" pin="15"/>
+    </net>
+    <net code="31" name="OUT_3">
+      <node ref="U3" pin="18"/>
+      <node ref="J2" pin="6"/>
+    </net>
+    <net code="32" name="SW_3">
+      <node ref="U3" pin="20"/>
+      <node ref="U1" pin="10"/>
+    </net>
+    <net code="33" name="SW_2">
+      <node ref="U1" pin="9"/>
+      <node ref="U3" pin="11"/>
+    </net>
+    <net code="34" name="OUT_2">
+      <node ref="J2" pin="5"/>
+      <node ref="U3" pin="13"/>
+    </net>
+    <net code="35" name="IN_2">
+      <node ref="U1" pin="3"/>
+      <node ref="U3" pin="14"/>
+      <node ref="J1" pin="5"/>
+    </net>
+    <net code="36" name="SW_0">
+      <node ref="U3" pin="1"/>
+      <node ref="U1" pin="21"/>
+    </net>
+    <net code="37" name="OUT_0">
+      <node ref="U3" pin="3"/>
+      <node ref="J2" pin="3"/>
+    </net>
+    <net code="38" name="IN_0">
+      <node ref="U1" pin="1"/>
+      <node ref="J1" pin="3"/>
+      <node ref="U3" pin="4"/>
+    </net>
+  </nets>
+</export>
