@@ -15,10 +15,10 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 
 // USER PARAMS (RUN FIRST)
 
-~activeSynth = \samp2;
+~activeSynth = \sampler;
 // Samples!
 //This is for the sampler and granular..
-~sampPath = "Q:/1 SkyeData/1 Projects/Timeless/hgExtra/samples/woah.wav";
+~sampPath = "Q:/1 SkyeData/1 Projects/Timeless/hgExtra/samples/ep.wav";
 
 //..and this is for the wavetable synth. All of them should be filled and run through serum first.
 ~wtPath = ["","",""];
@@ -31,12 +31,10 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 
 )
 
-
-
 //boot the synth (RUN LAST)
-	~boot.value;
+~boot.value;
 
-
+~voiceArray.postln
 
 //(RUN SECOND)
 (
@@ -73,23 +71,28 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 					Voice num is a selector from 0 - 8 that sets the output of the synth
 					*/
 
-					arg sampBuffer, paramX = 0.75, paramY = 0, paramZ = 1, cpsPitch=263.5, loop = 1, trig = -1, voiceNum = 0;
+					arg sampBuffer, paramX = 0.75, paramY = 0, paramZ = 1, cpsPitch=263.5, loop = 0, trig = -1, voiceNum = 0;
 
-					var loopStart, loopLength, loopEnd, loopRate, loopPos, sig, sigMono, out, frames, freeTrig, deltaTrig, ratioPitch, rate, start, duration;
+					var loopStart, loopLength, loopEnd,
+					loopRate, loopPos, sig, sigMono, out,
+					frames, freeTrig, deltaTrig, ratioPitch,
+					rate, start, duration, tempStart, startEnv,
+					mixEnv, src0, src1, start0, start1,
+					buffSel, mainSel;
 
 					rate = (paramX-0.5)*4;
 					start = paramY;
 					duration = paramZ**3;
 					ratioPitch = rate * (2**((cpsPitch.cpsmidi / 12) - 5));
 
+					tempStart = 0;
+
+					startEnv = Env.new([0,1,1,0],[0.1,0,0.1],releaseNode:2);
+
 					//prevents overflow or underflow
 					duration = duration.clip(0.001,1);
 					//convert positional args to samples
 					frames = BufFrames.kr(sampBuffer);
-					deltaTrig = Changed.ar(LeakDC.ar(start.asAudioRateInput),0);
-					deltaTrig = Trig1.ar(deltaTrig,0.25);
-					deltaTrig = deltaTrig * (0-1) + 1;
-					// deltaTrig.poll(20,deltaTrig);
 					loopStart = start * frames;
 					loopLength = duration * frames;
 					loopLength = loopLength.clip(128,loopLength+20);
@@ -97,7 +100,43 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 					loopRate = BufRateScale.kr(sampBuffer) * (ratioPitch);
 					//Positional driver
 					loopPos = Phasor.ar(trig, loopRate, 0, loopLength);
-					sig = BufRd.ar(1, sampBuffer, Wrap.ar((loopPos + loopStart)*deltaTrig,0, frames), 0, 4);
+
+					/*
+
+					Input. If changed, hold at value, spawn new instance 0.05 s resampled, fade, release first, spawn new etc
+
+					*/
+
+
+					deltaTrig = Changed.ar(LeakDC.ar(start.asAudioRateInput),0);
+					// deltaTrig = Trig1.ar(deltaTrig,0.05);
+					// deltaTrig = deltaTrig * (0-1) + 1;
+					// deltaTrig.poll(500,"deltaTrig");
+
+
+					mainSel = Phasor.ar(deltaTrig,10/SampleRate.ir,0,1);
+
+
+					mainSel = (((mainSel - 0.5).abs)*2);
+
+					// mainSel.poll(300,"mainSel");
+
+					// loopStart.poll(500,"loopStart");
+
+					start0 = Latch.kr(start, (mainSel > 0.98)*deltaTrig);
+					// start0.poll(300,"start0");
+					start1 = Latch.kr(start, (mainSel < 0.02)*deltaTrig);
+					// start1.poll(300,"start1");
+					src0 = BufRd.ar(1, sampBuffer, Wrap.ar((loopPos + (start0 * frames)),0, frames), 0, 4);
+					src1 = BufRd.ar(1, sampBuffer, Wrap.ar((loopPos + (start1 * frames)),0, frames), 0, 4);
+
+					buffSel = mainSel.clip(0,0.2) * 5;
+
+					// buffSel.poll(300,"buffSel");
+
+					sig = LinSelectX.ar(buffSel,[src0, src1]);
+
+
 					//set up panning to all 8 outputs
 					out=sig;
 					if(~fullIO == true, {
@@ -107,13 +146,18 @@ To turn it on, put your text cursor in the user params section and press ctrl en
 					//Here to make life good for debug
 					// Out.ar(0, [sig,sig]);
 					//frees self at end if loop is off
-					freeTrig = loopPos > (loopLength - 100 + (1000 * (loop)));
+					freeTrig = loopPos > (loopLength - 300 + (1000 * (loop)));
 					FreeSelf.kr(freeTrig);
 				}).add;
 			);
 
 			/*	1.wait;
 			~synth = Synth(\sampler, ["loop",1,'sampBuffer',b]);*/
+
+
+
+
+
 
 
 			(
